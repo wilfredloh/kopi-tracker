@@ -1,0 +1,17 @@
+<h1> A kopi</h1>
+
+<p> This is kopi: <%= @kopi.name %>
+</p>
+
+<p> Farm: <%= @farm.location %>
+<%= link_to 'Show Farm', farm_path(@farm.id) %>
+
+</p>
+
+<p> Roast:
+</p>
+
+
+<%= link_to 'Edit', edit_kopi_path(@kopi) %>
+
+<%= link_to 'Kopis', kopis_path %>

@@ -1,0 +1,26 @@
+<h1>Listing all farms here</h1>
+
+<%= link_to 'Kopis', kopis_path %>
+<%= link_to 'New farm', new_farm_path %>
+
+
+<table>
+  <tr>
+    <th>Location</th>
+    <th>Phone #</th>
+    <th></th>
+  </tr>
+
+  <% @farms.each do |farm| %>
+    <tr>
+      <td><%= farm.location %></td>
+      <td><%= farm.phone_num %></td>
+      <td><%= link_to 'Show', farm_path(farm) %></td>
+      <td><%= link_to 'Edit', edit_farm_path(farm) %></td>
+      <td><%= link_to 'Destroy', farm_path(farm),
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %></td>
+
+    </tr>
+  <% end %>
+</table>

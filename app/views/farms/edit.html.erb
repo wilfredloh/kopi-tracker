@@ -1,0 +1,25 @@
+<h1>Edit farm</h1>
+
+<%= form_with scope: :farm, model: @farm, local: true do |form| %>
+
+  <p>
+    <%= form.label :location %><br>
+    <%= form.text_field :location %>
+  </p>
+
+  <p>
+    <%= form.label :phone_num %><br>
+    <%= form.text_area :phone_num %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Delete', farm_path(@farm),
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %>
+
+<%= link_to 'Back', root_path %>
