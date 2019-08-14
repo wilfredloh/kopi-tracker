@@ -1,8 +1,8 @@
 <h1>Listing all farms here</h1>
 
-<%= link_to 'Kopis', kopis_path %>
-<br>
-<%= link_to 'New farm', new_farm_path %>
+<% if current_user.try(:admin?)%>
+	<%= link_to 'New farm', new_farm_path %>
+<% end %>
 
 <%= form_tag(farms_path, method: "get") do %>
     <%= select_tag(:sortby, options_for_select(["Sort by",['Location','location'], ['Default','default']]), :onchange=>'this.form.submit();',class:"form-control" ) %>

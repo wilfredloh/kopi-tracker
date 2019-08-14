@@ -1,0 +1,15 @@
+<h1> A roast</h1>
+
+<h3> This is roast: <%= @roast.name %></h3>
+
+<h3> Kopis: </h3>
+	<% @kopis.each do |kopi| %>
+		<%= kopi.name %>
+	<%end %>
+
+<br>
+<br>
+
+<%= link_to 'Edit', edit_roast_path(@roast) %>
+
+<%= link_to 'Back', kopis_path %>

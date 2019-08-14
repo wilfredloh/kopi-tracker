@@ -1,0 +1,27 @@
+<h1>Listing all roasts here</h1>
+
+<% if current_user.admin %>
+	<%= link_to 'New roast', new_roast_path %>
+<% end %>
+
+<%= form_tag(roasts_path, method: "get") do %>
+    <%= select_tag(:sortby, options_for_select(["Sort by",['Name','name'], ['Default','default']]), :onchange=>'this.form.submit();',class:"form-control" ) %>
+<%end%>
+
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+  <% @sorted.each do |roast| %>
+    <tr>
+      <td><%= roast.name %></td>
+      <td><%= link_to 'Show', roast_path(roast) %></td>
+      <td><%= link_to 'Edit', edit_roast_path(roast) %></td>
+      <td><%= link_to 'Destroy', roast_path(roast),
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

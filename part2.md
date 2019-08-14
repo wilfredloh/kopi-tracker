@@ -17,5 +17,3 @@ Regular users can only add coffees.
 
 #### further
 Open the app to your customers who are ordering the coffee. Logged in users can order kopis.
-
-

@@ -1,0 +1,20 @@
+<h1>Edit roast</h1>
+
+<%= form_with scope: :roast, model: @roast, local: true do |form| %>
+
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Delete', roast_path(@roast),
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %>
+
+<%= link_to 'Back', roasts_path %>
