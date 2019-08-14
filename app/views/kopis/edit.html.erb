@@ -2,14 +2,21 @@
 
 <%= form_with scope: :kopi, model: @kopi, local: true do |form| %>
 
+	<%= form.collection_select :farm_id, @farms, :id, :location %>
+
+  <%= form.collection_select :roast_id, @roasts, :id, :name %>
+
   <p>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
   </p>
 
-  <p>
-    <%= form.label :roastedness %><br>
-    <%= form.text_area :roastedness %>
+  <p> Farm:
+    <%= @farm.location %>
+  </p>
+
+  <p> Roast:
+    <%= @roast.name %>
   </p>
 
   <p>

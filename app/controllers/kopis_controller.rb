@@ -2,11 +2,20 @@ class KopisController < ApplicationController
 
   def index
     @kopis = Kopi.all
+    @sorted
+    if params[:sortby] == "name"
+      @sorted = @kopis.sort_by{|kopi| kopi.name}
+    elsif params[:sortby] == "roast"
+      @sorted = @kopis.sort_by{|kopi| kopi.roast.name}
+    else
+      @sorted = @kopis.sort_by{|kopi| kopi.id}
+    end
   end
 
 
   def new
     @farms = Farm.all
+    @roasts = Roast.all
   end
 
   def create
@@ -21,6 +30,7 @@ class KopisController < ApplicationController
 
     @kopi = Kopi.find(params[:id])
     @farm = @kopi.farm
+    @roast = @kopi.roast
 
     if params[:farm_id].to_i != @kopi.farm.id
       # do something
@@ -29,6 +39,11 @@ class KopisController < ApplicationController
 
   def edit
     @kopi = Kopi.find(params[:id])
+    @farm = @kopi.farm
+    @roast = @kopi.roast
+    @farms = Farm.all
+    @roasts = Roast.all
+
   end
 
   def update
@@ -48,6 +63,6 @@ class KopisController < ApplicationController
 private
 
   def kopi_params
-    params.require(:kopi).permit(:name, :roastedness, :farm_id)
+    params.require(:kopi).permit(:name, :farm_id, :roast_id)
   end
 end

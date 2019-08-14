@@ -2,6 +2,12 @@ class FarmsController < ApplicationController
 
   def index
     @farms = Farm.all
+    @sorted
+    if params[:sortby] == "location"
+      @sorted = @farms.sort_by{|farm| farm.location}
+    else
+      @sorted = @farms.sort_by{|farm| farm.id}
+    end
   end
 
   def new
