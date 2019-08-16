@@ -9,6 +9,11 @@ before_action :authenticate_user!, :except => [ :show, :index ]
       @sorted = @kopis.sort_by{|kopi| kopi.name}
     elsif params[:sortby] == "roast"
       @sorted = @kopis.sort_by{|kopi| kopi.roast.name}
+    elsif params[:sortby] == "popularity-asc"
+      @sorted = @kopis.sort_by{|kopi| kopi.customers.length}
+    elsif params[:sortby] == "popularity-des"
+      arr = @kopis.sort_by{|kopi| kopi.customers.length}
+      @sorted = arr.reverse!
     else
       @sorted = @kopis.sort_by{|kopi| kopi.id}
     end
@@ -18,6 +23,8 @@ before_action :authenticate_user!, :except => [ :show, :index ]
   def new
     @farms = Farm.all
     @roasts = Roast.all
+    allCustomers = Customer.all
+    @customers = allCustomers.sort_by{|customer| customer.name}
   end
 
   def create
@@ -50,6 +57,8 @@ before_action :authenticate_user!, :except => [ :show, :index ]
     @roast = @kopi.roast
     @farms = Farm.all
     @roasts = Roast.all
+    allCustomers = Customer.all
+    @customers = allCustomers.sort_by{|customer| customer.name}
 
   end
 
@@ -70,6 +79,6 @@ before_action :authenticate_user!, :except => [ :show, :index ]
 private
 
   def kopi_params
-    params.require(:kopi).permit(:name, :farm_id, :roast_id)
+    params.require(:kopi).permit(:name, :farm_id, :roast_id, :customer_ids => [])
   end
 end

@@ -6,6 +6,8 @@
 
   <%= form.collection_select :roast_id, @roasts, :id, :name %>
 
+  <%= form.collection_check_boxes :customer_ids, @customers, :id, :name %>
+
   <p>
     <%= form.label :name %><br>
     <%= form.text_area :name %>

@@ -1,0 +1,30 @@
+<h1>Listing all customers here</h1>
+
+<% if current_user%>
+	<%= link_to 'New customer', new_customer_path %>
+<% end %>
+
+<%= form_tag(customers_path, method: "get") do %>
+    <%= select_tag(:sortby, options_for_select(["Sort by",['Name (Alphabetical)','name'], ['Coffee # (Low to High)','kopi-asc'], ['Coffee # (High to Low)','kopi-des'],['Oldest to Newest','time']]), :onchange=>'this.form.submit();',class:"form-control" ) %>
+<%end%>
+
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th># of Coffee</th>
+  </tr>
+
+  <% @sorted.each do |customer| %>
+    <tr>
+      <td><%= customer.name %></td>
+      <td><%= customer.kopi.length %></td>
+      <td><%= link_to 'Show', customer_path(customer) %></td>
+      <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+      <td><%= link_to 'Destroy', customer_path(customer),
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %></td>
+
+    </tr>
+  <% end %>
+</table>

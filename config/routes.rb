@@ -27,6 +27,14 @@ Rails.application.routes.draw do
   patch '/roasts/:id' => 'roasts#update'
   delete '/roasts/:id' => 'roasts#destroy'
 
+  get '/customers' => 'customers#index', as: 'customers'
+  get '/customers/new' => 'customers#new', as: 'new_customer'
+  post '/customers' => 'customers#create'
+  get '/customers/:id' => 'customers#show' , as: 'customer'
+  get '/customers/:id/edit' => 'customers#edit', as: 'edit_customer'
+  patch '/customers/:id' => 'customers#update'
+  delete '/customers/:id' => 'customers#destroy'
+
   # get '/parks/:park_id/rangers' => 'rangers#index', as: 'park_rangers'
   # get '/parks/:park_id/rangers/new' => 'rangers#create', as: 'new_park_ranger'
   # post '/parks/:park_id/rangers' => 'rangers#create'

@@ -11,6 +11,11 @@
 <p> Roast: <%= @roast.name %>
 </p>
 
+<h3> All customers </h3>
+<% @kopi.customers.each do |customer| %>
+	<p> <%= customer.name %> </p>
+<% end %>
+
 
 <%= link_to 'Edit', edit_kopi_path(@kopi) %>
 

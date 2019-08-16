@@ -5,7 +5,7 @@
 <% end %>
 
 <%= form_tag(kopis_path, method: "get") do %>
-    <%= select_tag(:sortby, options_for_select(["Sort by",['Name','name'],['Roast','roast'], ['Default','default']]), :onchange=>'this.form.submit();',class:"form-control" ) %>
+    <%= select_tag(:sortby, options_for_select(["Sort by",['Name (Alphabetical)','name'],['Roast (Alphabetical)','roast'], ['Popularity (Low to High)','popularity-asc'], ['Popularity (High to Low)','popularity-des'],['Oldest to Newest','time']]), :onchange=>'this.form.submit();',class:"form-control" ) %>
 <%end%>
 
 
@@ -13,6 +13,7 @@
   <tr>
     <th>Name</th>
     <th>Roast #</th>
+    <th>Popularity</th>
     <th></th>
   </tr>
 
@@ -20,6 +21,7 @@
     <tr>
       <td><%= kopi.name %></td>
       <td><%= kopi.roast.name %></td>
+      <td><%= kopi.customers.length %></td>
       <td><%= link_to 'Show', kopi_path(kopi) %></td>
       <td><%= link_to 'Edit', edit_kopi_path(kopi) %></td>
       <td><%= link_to 'Destroy', kopi_path(kopi),

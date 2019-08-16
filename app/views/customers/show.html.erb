@@ -1,0 +1,19 @@
+<h1> A customer</h1>
+
+<p> This is customer: <%= @customer.name %>
+</p>
+
+
+
+
+
+<h3> All kopis </h3>
+<% @customer.kopi.each do |kopi| %>
+	<p> <%= kopi.name %> </p>
+<% end %>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %>
+
+<%= link_to 'Destroy', customer_path(@customer),
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %>
