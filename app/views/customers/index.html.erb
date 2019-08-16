@@ -16,9 +16,10 @@
   </tr>
 
   <% @sorted.each do |customer| %>
+		<% customer.kopi.each do |singlekopi| %>
     <tr>
       <td><%= customer.name %></td>
-      <td><%= customer.kopi.length %></td>
+      <td><%= singlekopi.name %></td>
       <td><%= link_to 'Show', customer_path(customer) %></td>
       <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
       <td><%= link_to 'Destroy', customer_path(customer),
@@ -26,5 +27,6 @@
         data: { confirm: 'Are you sure?' } %></td>
 
     </tr>
+		<% end %>
   <% end %>
 </table>
