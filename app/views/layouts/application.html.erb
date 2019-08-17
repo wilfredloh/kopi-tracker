@@ -10,6 +10,57 @@
   </head>
 
   <body>
+
+    <nav class="navbar navbar-expand-sm bg-light">
+      <div class="nav-holder">
+      <div class="wrapper">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <% if user_signed_in? %>
+            <div class="nav-styling">
+            <button type="button" class=" btn btn-dark ">
+      			<%= link_to 'Log Out', destroy_user_session_url, method: :delete %></button>
+            </div>
+      		<% else %>
+          <div class="nav-styling">
+          <button type="button" class=" btn btn-dark ">
+      			<%= link_to 'Log In', new_user_session_url %>
+            </button>
+            </div>
+      		<% end %>
+        </li>
+        <li class="nav-item">
+          <div class="nav-styling"><button type="button" class=" btn btn-dark "><%= link_to 'Farms', root_path %></button></div>
+          </li>
+        <li class="nav-item">
+          <div class="nav-styling"><button type="button" class=" btn btn-dark "><%= link_to 'Kopis', kopis_path %></button></div>
+          </li>
+        <li class="nav-item">
+          <div class="nav-styling"><button type="button" class=" btn btn-dark "><%= link_to 'Roasts', roasts_path %></button></div>
+          </li>
+        <li class="nav-item">
+          <div class="nav-styling"><button type="button" class=" btn btn-dark "><%= link_to 'Customers', customers_path %></button></div>
+          </li>
+      </ul>
+      </div>
+
+      <div class="wrapper loggedstatus">
+      <% if current_user.admin %>
+        <div class="nav-styling">You are logged in as: <strong>Admin</strong></div>
+      <% else current_user %>
+        <div class="nav-styling">You are logged in as: <strong><%= current_user.email %></strong></div>
+      <% end %>
+      </div></div>
+
+
+    </nav>
+
+
+
+
+
+
+
 		<%= link_to 'Farms', root_path %>
 		<%= link_to 'Kopis', kopis_path %>
 		<%= link_to 'Roasts', roasts_path %>
